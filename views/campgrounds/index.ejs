@@ -1,0 +1,68 @@
+<% layout('layouts/boilerplate') %>
+
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-6" id="cluster-map"></div>
+            <div class="col-6" style="display: flex; justify-content: center; align-items: center;">
+                <div class="d-flex">
+                    <h1 style="font-size:90px; font-family: 'Brush Script MT', cursive; color: rgb(48, 43, 43);">Tripazo
+                    </h1>
+                    <i class="fa-solid fa-signs-post mt-3"
+                        style="color: rgb(235, 172, 57); font-size: 100px; margin-left: 40px;"></i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <h1 class="mt-3" style="color: black;">All Campgrounds</h1>
+
+    <a href="/campgrounds/new"><button class="btn mb-2" style="background-color: #CF9325; color: white;">Create A New
+            Campground</button></a> <!-- #CF9325 -->
+
+
+    
+    <div class="row gap-4 d-flex mt-4 pb-4 flex-wrap"> <!--  -->
+        <% for (let campground of campgrounds){ %>
+            <div class="col-md-3" style="height:auto; width:300px;">
+                <% if(campground.images.length){ %>
+                    <div class="card border-0 rounded-3" style="background-color: #FCF6F5FF;">
+                        <img src="<%= campground.images[0].url %> " class="img-fluid" style="height:200px; width:auto;">
+                        <% } else { %>
+                            <img class="img-fluid"
+                                src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/camping-quotes-1556677391.jpg?crop=1.00xw:0.855xh;0,0.0384xh&resize=1200:*"
+                                alt="">
+                            <% } %>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= campground.title %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%= campground.description.substring(0,75) + '...' %>
+                                    </p>
+                                    <p class="small-text">
+                                        <small class="text-muted">
+                                            <%= campground.location %>
+                                        </small>
+                                    </p>
+                                    <a href="/campgrounds/<%= campground._id %> " class="btn"
+                                        style="background-color: #e2a22a; color: white;">View <%= campground.title %>
+                                    </a>
+                                </div>
+                    </div>
+            </div>
+
+            <% } %>
+    </div>
+
+    <script>
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+        const campgrounds = { features: <%-JSON.stringify(campgrounds) %> }
+
+
+
+    </script>
+
+    <script src="/javascripts/clusterMap.js"></script>

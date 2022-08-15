@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: rgba(132, 82, 16, 0.7);"> <!-- background: rgba(133, 113, 1, 0.7) --> 
+    <div class="container-fluid">
+      <a class="navbar-brand text-dark fw-bold" href="/">TRIPAZO</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav">
+            <a class="nav-link text-dark" href="/campgrounds">Home</a>
+            <a class="nav-link text-dark" href="/campgrounds/new">New Campground</a>       
+        </div>
+        <div class="navbar-nav ms-auto">
+          <% if(!currentUser){ %> 
+          <a href="/login" class="nav-link text-dark">Login</a>
+          <a href="/register" class="nav-link text-dark">Register</a>
+          <% } else { %> 
+          <a href="/logout" class="nav-link text-dark">Logout</a>
+          <% } %> 
+        </div>
+      </div>
+    </div>
+  </nav>
