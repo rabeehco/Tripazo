@@ -3,6 +3,7 @@ const Campground = require('../models/campground')
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding')
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({accessToken: mapBoxToken})
+const {noCache} = require('../middleware')
 
 /* Show Campgrounds */
 module.exports.index = async (req, res) => {
@@ -12,6 +13,9 @@ module.exports.index = async (req, res) => {
 
 /* New Campground Form Page */
 module.exports.renderNewForm = (req, res) => { 
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Expires', '-1');
+    res.header('Pragma', 'no-cache');
         res.render('campgrounds/new')
 }
 
@@ -49,6 +53,7 @@ module.exports.showCampground = async (req, res) => {
 
 /* Render Edit Campground Form */
 module.exports.renderEditForm = async (req, res) => {
+    console.log('render edit form')
     const {id} = req.params;
     const campground = await Campground.findById(id)
     if (! campground) {
@@ -56,7 +61,7 @@ module.exports.renderEditForm = async (req, res) => {
         return res.redirect('/campgrounds')
     }
     res.render('campgrounds/edit', {campground})
-}
+}      
 
 /* Update Campground */
 module.exports.updateCampground = async (req, res) => {

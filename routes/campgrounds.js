@@ -7,6 +7,7 @@ const Campground = require('../models/campground')
 const multer = require('multer')
 const { storage } = require('../cloudinary')
 const upload = multer({ storage })
+const {noCache} = require('../middleware')
 
 router.route('/')
     .get(catchAsync(campgrounds.index))
@@ -15,10 +16,10 @@ router.route('/')
 router.get('/new', isLoggedIn, campgrounds.renderNewForm)
 
 router.route('/:id')
-    .get(catchAsync(campgrounds.showCampground))
+    .get(noCache ,catchAsync(campgrounds.showCampground))
     .put(isLoggedIn, isAuthor, upload.array('image'), validateCampground, catchAsync(campgrounds.updateCampground))
     .delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground))
 
-router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(campgrounds.renderEditForm))
+router.get('/:id/edit', noCache, isLoggedIn, isAuthor, catchAsync(campgrounds.renderEditForm))
 
 module.exports = router
