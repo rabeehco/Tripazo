@@ -3,9 +3,6 @@ const User = require('../models/user')
 
 /* Render Register Page */
 module.exports.renderRegister = (req, res) => {
-    // res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-    // res.header('Expires', '-1');
-    // res.header('Pragma', 'no-cache');
     if(req.isAuthenticated()){
         res.redirect('/campgrounds')
     } else {
@@ -34,9 +31,6 @@ module.exports.register = async (req, res) => {
 
 /* Render Login Page */
 module.exports.userLogin = (req, res) => {
-    // res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-    // res.header('Expires', '-1');
-    // res.header('Pragma', 'no-cache');
     if(req.isAuthenticated()){
          res.redirect('/campgrounds') 
     } else {

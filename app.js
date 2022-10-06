@@ -1,6 +1,3 @@
-// if(process.env.NODE_ENV !== 'production') {
-//     require('dotenv').config();
-// }
 require('dotenv').config();
 
 
@@ -28,7 +25,7 @@ const MongoDBStore = require("connect-mongo")(session)
 
 
 const mongoose = require('mongoose')
-// mongodb://127.0.0.1:/yelp-camp
+
 mongoose.connect(dbUrl)
 .then(()=>{
     console.log('DB connected')
@@ -121,7 +118,7 @@ const scriptSrcUrls = [
           "'self'",
           'blob:',
           'data:',
-          'https://res.cloudinary.com/deuyeqft4/', //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
+          'https://res.cloudinary.com/deuyeqft4/', //Should match your cloudinary account
           'https://images.unsplash.com/'
         ],
         fontSrc: ["'self'", ...fontSrcUrls]
