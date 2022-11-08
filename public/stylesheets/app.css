@@ -19,3 +19,19 @@
     background-size: cover;
     background-attachment: fixed;
 }
+
+@media (max-width: 768px) {
+    .card-box{
+        justify-content: space-around !important;
+    }
+
+    .create-camp-box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tripazo-title{
+        font-size: 300px;
+    }
+  }
